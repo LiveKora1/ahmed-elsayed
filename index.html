@@ -3,419 +3,3595 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة الأستاذ | منصة الامتحانات</title>
+<title>أحمد السيد | منصة الامتحانات</title>
+
 <style>
 :root{
- --bg:#f4f8ff;--card:#fff;--text:#172033;--muted:#68778b;--primary:#08a6df;
- --primary2:#087fd1;--border:#e5ebf3;--nav:rgba(255,255,255,.88);--shadow:0 18px 55px rgba(25,55,90,.12);
+ --bg:#f4f8ff;
+ --card:#fff;
+ --text:#172033;
+ --muted:#68778b;
+ --primary:#08a6df;
+ --primary2:#087fd1;
+ --border:#e5ebf3;
+ --nav:rgba(255,255,255,.88);
+ --shadow:0 18px 55px rgba(25,55,90,.12);
 }
+
 body.dark{
- --bg:#0c1320;--card:#151f2e;--text:#f4f7fb;--muted:#aab7c8;--primary:#16b5eb;
- --primary2:#388be2;--border:#29374b;--nav:rgba(12,19,32,.9);--shadow:0 18px 55px rgba(0,0,0,.35);
+ --bg:#0c1320;
+ --card:#151f2e;
+ --text:#f4f7fb;
+ --muted:#aab7c8;
+ --primary:#16b5eb;
+ --primary2:#388be2;
+ --border:#29374b;
+ --nav:rgba(12,19,32,.9);
+ --shadow:0 18px 55px rgba(0,0,0,.35);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:.25s}
-button,input,select{font:inherit}button{cursor:pointer}
-.nav{height:72px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:var(--nav);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
-.logo{font-size:22px;font-weight:900;color:var(--primary);cursor:pointer}
-.navRight{display:flex;align-items:center;gap:9px}
-.btn{border:0;border-radius:13px;padding:13px 20px;font-weight:800;transition:.2s}
-.btn:hover{transform:translateY(-2px)}
-.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
-.soft{background:var(--card);border:1px solid var(--border);color:var(--text)}
-.danger{background:#ffe8e8;color:#c62828}
-.theme{width:44px;height:44px;padding:0;border-radius:13px;background:var(--card);border:1px solid var(--border);font-size:20px}
-.page{display:none}.page.active{display:block}
-.hero{min-height:650px;padding:65px 8%;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;background:
-radial-gradient(circle at 15% 20%,rgba(0,174,239,.13),transparent 30%),
-radial-gradient(circle at 90% 75%,rgba(121,79,255,.12),transparent 28%),var(--bg)}
-.heroText .tag{display:inline-block;background:rgba(8,166,223,.12);color:var(--primary);padding:9px 17px;border-radius:30px;font-weight:900}
-.hero h1{font-size:clamp(38px,5vw,64px);line-height:1.25;margin:20px 0}
-.hero h1 span{color:var(--primary)}
-.hero p{font-size:18px;line-height:2;color:var(--muted);max-width:680px}
-.actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.teacherCard{height:430px;max-width:370px;width:100%;margin:auto;border-radius:35px;background:linear-gradient(145deg,var(--card),rgba(8,166,223,.08));box-shadow:var(--shadow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.teacherCard:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(8,166,223,.1);top:-70px;left:-70px}
-.teacherAvatar{width:230px;height:230px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:105px;background:rgba(8,166,223,.12);position:relative}
-.teacherLabel{position:absolute;bottom:28px;text-align:center}.teacherLabel h2{font-size:25px}.teacherLabel p{color:var(--muted);margin-top:5px}
-.features{padding:55px 8%;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;background:var(--card)}
-.feature{padding:28px;border:1px solid var(--border);border-radius:22px;text-align:center;background:var(--bg)}
-.featureIcon{font-size:43px}.feature h3{margin:12px 0}.feature p{color:var(--muted);line-height:1.8}
-footer{padding:28px;text-align:center;background:#07111f;color:#fff}
-.authWrap{min-height:calc(100vh - 72px);padding:35px 15px;display:flex;align-items:center;justify-content:center;background:
-radial-gradient(circle at 10% 20%,rgba(8,166,223,.13),transparent 30%),var(--bg)}
-.card{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:27px}
-.auth{width:min(510px,100%);padding:32px}
-.authIcon{width:72px;height:72px;margin:auto auto 14px;border-radius:20px;background:rgba(8,166,223,.12);display:flex;align-items:center;justify-content:center;font-size:37px}
-.auth h1{text-align:center}.sub{text-align:center;color:var(--muted);margin:9px 0 22px;line-height:1.7}
-label{display:block;font-weight:800;margin:13px 0 7px}
-input,select{width:100%;height:51px;padding:0 14px;border:2px solid var(--border);border-radius:13px;background:var(--bg);color:var(--text);outline:0}
-input:focus,select:focus{border-color:var(--primary)}
-.full{width:100%;margin-top:18px}.msg{min-height:24px;margin-top:13px;text-align:center;font-weight:800}
-.link{text-align:center;margin-top:18px;color:var(--muted)}.link span{color:var(--primary);font-weight:900;cursor:pointer}
-.dashboard{width:min(1200px,92%);margin:35px auto}
-.welcome{padding:28px 32px;border-radius:25px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
-.welcome small{opacity:.9}.welcome h1{margin:8px 0}.avatar{font-size:60px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0}
-.stat{padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow)}
-.statIcon{font-size:34px}.stat h2{font-size:32px;color:var(--primary);margin:7px 0}.stat p,.muted{color:var(--muted);line-height:1.8}
-.panel{padding:25px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);margin:20px 0}
-.panel h2{margin-bottom:5px}.examGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
-.exam{padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow)}
-.examIcon{font-size:43px}.exam h2{margin:10px 0}.exam p{color:var(--muted);margin:7px 0}
-.examTop{padding:18px 7%;display:flex;align-items:center;justify-content:space-between;background:var(--card);border-bottom:1px solid var(--border)}
-.timer{font-size:22px;font-weight:900;color:#e33}
-.question{padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:17px}
-.question h3{margin-bottom:15px;line-height:1.7}
-.option{display:block;padding:13px;margin:8px 0;border:2px solid var(--border);border-radius:12px;cursor:pointer}
-.option:hover{border-color:var(--primary);background:rgba(8,166,223,.07)}
-.option input{width:auto;height:auto;margin-left:8px}
-.result{text-align:center;max-width:510px;padding:35px}.cup{font-size:70px}.score{font-size:55px;color:var(--primary);font-weight:900;margin:12px}
-.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{padding:13px;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap}th{background:rgba(8,166,223,.07)}
-.search{max-width:400px;margin:15px 0}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}
-.empty{text-align:center;padding:25px;color:var(--muted)}
-.smallBtn{border:0;border-radius:10px;padding:9px 12px;font-weight:800}
+
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+}
+
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+ font-family:Tahoma,Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
+ transition:.25s;
+}
+
+button,input,select{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
+
+.nav{
+ height:72px;
+ position:sticky;
+ top:0;
+ z-index:100;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 6%;
+ background:var(--nav);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--border);
+}
+
+.logo{
+ font-size:22px;
+ font-weight:900;
+ color:var(--primary);
+ cursor:pointer;
+}
+
+.navRight{
+ display:flex;
+ align-items:center;
+ gap:9px;
+}
+
+.btn{
+ border:0;
+ border-radius:13px;
+ padding:13px 20px;
+ font-weight:800;
+ transition:.2s;
+}
+
+.btn:hover{
+ transform:translateY(-2px);
+}
+
+.primary{
+ background:linear-gradient(135deg,var(--primary),var(--primary2));
+ color:#fff;
+}
+
+.soft{
+ background:var(--card);
+ border:1px solid var(--border);
+ color:var(--text);
+}
+
+.danger{
+ background:#ffe8e8;
+ color:#c62828;
+}
+
+.theme{
+ width:44px;
+ height:44px;
+ padding:0;
+ border-radius:13px;
+ background:var(--card);
+ border:1px solid var(--border);
+ font-size:20px;
+}
+
+.page{
+ display:none;
+}
+
+.page.active{
+ display:block;
+}
+
+.hero{
+ min-height:650px;
+ padding:65px 8%;
+ display:grid;
+ grid-template-columns:1.15fr .85fr;
+ gap:60px;
+ align-items:center;
+ background:
+ radial-gradient(circle at 15% 20%,rgba(0,174,239,.13),transparent 30%),
+ radial-gradient(circle at 90% 75%,rgba(121,79,255,.12),transparent 28%),
+ var(--bg);
+}
+
+.heroText .tag{
+ display:inline-block;
+ background:rgba(8,166,223,.12);
+ color:var(--primary);
+ padding:9px 17px;
+ border-radius:30px;
+ font-weight:900;
+}
+
+.hero h1{
+ font-size:clamp(38px,5vw,64px);
+ line-height:1.25;
+ margin:20px 0;
+}
+
+.hero h1 span{
+ color:var(--primary);
+}
+
+.hero p{
+ font-size:18px;
+ line-height:2;
+ color:var(--muted);
+ max-width:680px;
+}
+
+.actions{
+ display:flex;
+ gap:12px;
+ margin-top:28px;
+ flex-wrap:wrap;
+}
+
+.teacherCard{
+ height:430px;
+ max-width:370px;
+ width:100%;
+ margin:auto;
+ border-radius:35px;
+ background:linear-gradient(145deg,var(--card),rgba(8,166,223,.08));
+ box-shadow:var(--shadow);
+ border:1px solid var(--border);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+ overflow:hidden;
+}
+
+.teacherCard:before{
+ content:"";
+ position:absolute;
+ width:260px;
+ height:260px;
+ border-radius:50%;
+ background:rgba(8,166,223,.1);
+ top:-70px;
+ left:-70px;
+}
+
+.teacherAvatar{
+ width:230px;
+ height:230px;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:105px;
+ background:rgba(8,166,223,.12);
+ position:relative;
+}
+
+.teacherLabel{
+ position:absolute;
+ bottom:28px;
+ text-align:center;
+}
+
+.teacherLabel h2{
+ font-size:25px;
+}
+
+.teacherLabel p{
+ color:var(--muted);
+ margin-top:5px;
+}
+
+.features{
+ padding:55px 8%;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+ background:var(--card);
+}
+
+.feature{
+ padding:28px;
+ border:1px solid var(--border);
+ border-radius:22px;
+ text-align:center;
+ background:var(--bg);
+}
+
+.featureIcon{
+ font-size:43px;
+}
+
+.feature h3{
+ margin:12px 0;
+}
+
+.feature p{
+ color:var(--muted);
+ line-height:1.8;
+}
+
+footer{
+ padding:28px;
+ text-align:center;
+ background:#07111f;
+ color:#fff;
+}
+
+.authWrap{
+ min-height:calc(100vh - 72px);
+ padding:35px 15px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:
+ radial-gradient(circle at 10% 20%,rgba(8,166,223,.13),transparent 30%),
+ var(--bg);
+}
+
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow);
+ border-radius:27px;
+}
+
+.auth{
+ width:min(510px,100%);
+ padding:32px;
+}
+
+.authIcon{
+ width:72px;
+ height:72px;
+ margin:auto auto 14px;
+ border-radius:20px;
+ background:rgba(8,166,223,.12);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:37px;
+}
+
+.auth h1{
+ text-align:center;
+}
+
+.sub{
+ text-align:center;
+ color:var(--muted);
+ margin:9px 0 22px;
+ line-height:1.7;
+}
+
+label{
+ display:block;
+ font-weight:800;
+ margin:13px 0 7px;
+}
+
+input,select{
+ width:100%;
+ height:51px;
+ padding:0 14px;
+ border:2px solid var(--border);
+ border-radius:13px;
+ background:var(--bg);
+ color:var(--text);
+ outline:0;
+}
+
+input:focus,select:focus{
+ border-color:var(--primary);
+}
+
+.full{
+ width:100%;
+ margin-top:18px;
+}
+
+.msg{
+ min-height:24px;
+ margin-top:13px;
+ text-align:center;
+ font-weight:800;
+}
+
+.link{
+ text-align:center;
+ margin-top:18px;
+ color:var(--muted);
+}
+
+.link span{
+ color:var(--primary);
+ font-weight:900;
+ cursor:pointer;
+}
+
+.dashboard{
+ width:min(1200px,92%);
+ margin:35px auto;
+}
+
+.welcome{
+ padding:28px 32px;
+ border-radius:25px;
+ background:linear-gradient(135deg,var(--primary),var(--primary2));
+ color:#fff;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ box-shadow:var(--shadow);
+}
+
+.welcome small{
+ opacity:.9;
+}
+
+.welcome h1{
+ margin:8px 0;
+}
+
+.avatar{
+ font-size:60px;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
+ margin:22px 0;
+}
+
+.stat{
+ padding:24px;
+ border-radius:20px;
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow);
+}
+
+.statIcon{
+ font-size:34px;
+}
+
+.stat h2{
+ font-size:32px;
+ color:var(--primary);
+ margin:7px 0;
+}
+
+.stat p,.muted{
+ color:var(--muted);
+ line-height:1.8;
+}
+
+.panel{
+ padding:25px;
+ border-radius:20px;
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow);
+ margin:20px 0;
+}
+
+.panel h2{
+ margin-bottom:5px;
+}
+
+.examGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:20px;
+ margin-top:20px;
+}
+
+.exam{
+ padding:24px;
+ border-radius:20px;
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow);
+}
+
+.examIcon{
+ font-size:43px;
+}
+
+.exam h2{
+ margin:10px 0;
+}
+
+.exam p{
+ color:var(--muted);
+ margin:7px 0;
+}
+
+.examTop{
+ padding:18px 7%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:var(--card);
+ border-bottom:1px solid var(--border);
+}
+
+.timer{
+ font-size:22px;
+ font-weight:900;
+ color:#e33;
+}
+
+.question{
+ padding:24px;
+ border-radius:20px;
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow);
+ margin-bottom:17px;
+}
+
+.question h3{
+ margin-bottom:15px;
+ line-height:1.7;
+}
+
+.option{
+ display:block;
+ padding:13px;
+ margin:8px 0;
+ border:2px solid var(--border);
+ border-radius:12px;
+ cursor:pointer;
+}
+
+.option:hover{
+ border-color:var(--primary);
+ background:rgba(8,166,223,.07);
+}
+
+.option input{
+ width:auto;
+ height:auto;
+ margin-left:8px;
+}
+
+.result{
+ text-align:center;
+ max-width:510px;
+ padding:35px;
+}
+
+.cup{
+ font-size:70px;
+}
+
+.score{
+ font-size:55px;
+ color:var(--primary);
+ font-weight:900;
+ margin:12px;
+}
+
+.tableWrap{
+ overflow:auto;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:12px;
+}
+
+th,td{
+ padding:13px;
+ border-bottom:1px solid var(--border);
+ text-align:right;
+ white-space:nowrap;
+}
+
+th{
+ background:rgba(8,166,223,.07);
+}
+
+.search{
+ max-width:400px;
+ margin:15px 0;
+}
+
+.row{
+ display:flex;
+ gap:10px;
+ align-items:center;
+}
+
+.row>*{
+ flex:1;
+}
+
+.empty{
+ text-align:center;
+ padding:25px;
+ color:var(--muted);
+}
+
+.smallBtn{
+ border:0;
+ border-radius:10px;
+ padding:9px 12px;
+ font-weight:800;
+}
+
+.adminInfo{
+ margin-top:15px;
+ padding:14px;
+ border-radius:14px;
+ background:rgba(8,166,223,.08);
+ color:var(--muted);
+}
+
 @media(max-width:850px){
- .hero{grid-template-columns:1fr;text-align:center}.hero p{margin:auto}.actions{justify-content:center}.teacherCard{height:360px}
- .features,.stats,.examGrid{grid-template-columns:1fr}.nav{padding:0 4%}.optional{display:none}.row{flex-direction:column;align-items:stretch}
+
+ .hero{
+  grid-template-columns:1fr;
+  text-align:center;
+ }
+
+ .hero p{
+  margin:auto;
+ }
+
+ .actions{
+  justify-content:center;
+ }
+
+ .teacherCard{
+  height:360px;
+ }
+
+ .features,
+ .stats,
+ .examGrid{
+  grid-template-columns:1fr;
+ }
+
+ .nav{
+  padding:0 4%;
+ }
+
+ .optional{
+  display:none;
+ }
+
+ .row{
+  flex-direction:column;
+  align-items:stretch;
+ }
+
 }
+
+
+/* ==================== EXAM BUILDER ==================== */
+.examBuilder{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:18px;
+}
+.builderHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:12px;
+ flex-wrap:wrap;
+}
+.builderMeta{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+}
+.metaPill{
+ padding:8px 12px;
+ border:1px solid var(--border);
+ border-radius:999px;
+ background:var(--bg);
+ font-weight:700;
+}
+.questionEditor{
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:18px;
+ background:var(--card);
+}
+.answerGrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+.correctRow{
+ display:flex;
+ gap:10px;
+ align-items:center;
+ flex-wrap:wrap;
+ margin-top:12px;
+}
+.questionListCard{
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:18px;
+ background:var(--card);
+}
+.questionItem{
+ border:1px solid var(--border);
+ border-radius:14px;
+ padding:14px;
+ margin-top:10px;
+}
+.questionItem .answers{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ margin-top:10px;
+}
+.answerOption{
+ padding:9px 11px;
+ border-radius:10px;
+ background:var(--bg);
+}
+.answerOption.correct{
+ font-weight:800;
+ border:1px solid #22a06b;
+}
+@media(max-width:700px){
+ .answerGrid,.questionItem .answers{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
+
 <body>
 
 <header class="nav">
- <div class="logo" onclick="showPage('home')">🎓 منصة الأستاذ</div>
- <div class="navRight">
-  <button class="theme" onclick="toggleTheme()" id="themeBtn" title="الوضع الداكن">🌙</button>
-  <button class="btn soft optional" onclick="showPage('login')">دخول الطالب</button>
-  <button class="btn primary" onclick="showPage('register')">تسجيل جديد</button>
+
+ <div class="logo" onclick="showPage('home')">
+  🎓 أحمد السيد
  </div>
+
+ <div class="navRight">
+
+  <button
+   class="theme"
+   onclick="toggleTheme()"
+   id="themeBtn"
+   title="الوضع الداكن">
+   🌙
+  </button>
+
+  <button
+   class="btn soft optional"
+   onclick="showPage('login')">
+   دخول الطالب
+  </button>
+
+  <button
+   class="btn primary"
+   onclick="showPage('register')">
+   تسجيل جديد
+  </button>
+
+ </div>
+
 </header>
 
+
 <!-- ==================== HOME ==================== -->
+
 <section id="home" class="page active">
+
  <div class="hero">
+
   <div class="heroText">
-   <span class="tag">📚 منصة تعليمية إلكترونية</span>
-   <h1>تعلم، امتحن،<br><span>واعرف نتيجتك فورًا</span></h1>
-   <p>منصة الأستاذ تساعد الطلاب على التسجيل وحل الامتحانات إلكترونيًا والحصول على النتيجة مباشرة، بينما يستطيع الأستاذ متابعة الطلاب والنتائج من لوحة تحكم واحدة.</p>
+
+   <span class="tag">
+    📚 منصة تعليمية إلكترونية
+   </span>
+
+   <h1>
+    تعلم، امتحن،<br>
+    <span>واعرف نتيجتك فورًا</span>
+   </h1>
+
+   <p>
+    منصة أحمد السيد تساعد الطلاب على التسجيل وحل الامتحانات إلكترونيًا
+    والحصول على النتيجة مباشرة، بينما يستطيع الأستاذ متابعة الطلاب
+    والنتائج من لوحة تحكم واحدة.
+   </p>
+
    <div class="actions">
-    <button class="btn primary" onclick="showPage('register')">🚀 ابدأ الآن</button>
-    <button class="btn soft" onclick="showPage('login')">🔐 تسجيل الدخول</button>
-    <button class="btn soft" onclick="showPage('adminLogin')">👨‍🏫 دخول الأستاذ</button>
+
+    <button
+     class="btn primary"
+     onclick="showPage('register')">
+     🚀 ابدأ الآن
+    </button>
+
+    <button
+     class="btn soft"
+     onclick="showPage('login')">
+     🔐 تسجيل الدخول
+    </button>
+
+    <button
+     class="btn soft"
+     onclick="showPage('adminLogin')">
+     👨‍🏫 دخول الأستاذ
+    </button>
+
    </div>
+
   </div>
+
+
   <div class="teacherCard">
-   <div class="teacherAvatar">👨‍🏫</div>
-   <div class="teacherLabel"><h2>منصة الأستاذ احمد السيد </h2><p>معًا نحو تعلم أفضل ✨</p></div>
+
+   <div class="teacherAvatar">
+    👨‍🏫
+   </div>
+
+   <div class="teacherLabel">
+    <h2>منصة أحمد السيد</h2>
+    <p>معًا نحو تعلم أفضل ✨</p>
+   </div>
+
   </div>
+
  </div>
+
+
  <div class="features">
-  <div class="feature"><div class="featureIcon">📝</div><h3>امتحانات إلكترونية</h3><p>الطالب يدخل الامتحان من الهاتف أو الكمبيوتر بسهولة.</p></div>
-  <div class="feature"><div class="featureIcon">⚡</div><h3>تصحيح فوري</h3><p>يتم حساب الدرجة والنسبة المئوية فور تسليم الامتحان.</p></div>
-  <div class="feature"><div class="featureIcon">📊</div><h3>لوحة تحكم الأستاذ</h3><p>بحث بالاسم أو الكود ومتابعة نتائج الطلاب.</p></div>
+
+  <div class="feature">
+
+   <div class="featureIcon">📝</div>
+
+   <h3>
+    امتحانات إلكترونية
+   </h3>
+
+   <p>
+    الطالب يدخل الامتحان من الهاتف أو الكمبيوتر بسهولة.
+   </p>
+
+  </div>
+
+
+  <div class="feature">
+
+   <div class="featureIcon">⚡</div>
+
+   <h3>
+    تصحيح فوري
+   </h3>
+
+   <p>
+    يتم حساب الدرجة والنسبة المئوية فور تسليم الامتحان.
+   </p>
+
+  </div>
+
+
+  <div class="feature">
+
+   <div class="featureIcon">📊</div>
+
+   <h3>
+    لوحة تحكم الأستاذ
+   </h3>
+
+   <p>
+    بحث بالاسم أو الكود ومتابعة نتائج الطلاب.
+   </p>
+
+  </div>
+
  </div>
- <footer>© 2026 منصة الأستاذ — جميع الحقوق محفوظة</footer>
+
+
+ <footer>
+  © 2026 أحمد السيد — جميع الحقوق محفوظة
+ </footer>
+
 </section>
+
 
 <!-- ==================== REGISTER ==================== -->
+
 <section id="register" class="page">
- <div class="authWrap"><div class="card auth">
-  <div class="authIcon">👨‍🎓</div><h1>تسجيل طالب جديد</h1><p class="sub">التسجيل بسيط ومناسب للطلاب من 10 إلى 15 سنة.</p>
-  <form id="registerForm">
-   <label>👤 اسم الطالب</label><input id="regName" maxlength="80" placeholder="مثال: أحمد محمد" required>
-   <label>🔢 كود الطالب</label><input id="regCode" maxlength="30" placeholder="اكتب الكود الذي أعطاه لك الأستاذ" required>
-   <label>🎒 الصف الدراسي</label>
-   <select id="regGrade" required><option value="">اختر الصف الدراسي</option><option>الرابع الابتدائي</option><option>الخامس الابتدائي</option><option>السادس الابتدائي</option><option>الأول الإعدادي</option><option>الثاني الإعدادي</option><option>الثالث الإعدادي</option></select>
-   <label>🔐 كلمة المرور</label><input id="regPass" type="password" minlength="6" placeholder="6 أحرف أو أرقام على الأقل" required>
-   <label>🔐 تأكيد كلمة المرور</label><input id="regPass2" type="password" minlength="6" placeholder="اكتب كلمة المرور مرة أخرى" required>
-   <button class="btn primary full" type="submit">🚀 إنشاء الحساب</button>
-  </form><div id="regMsg" class="msg"></div>
-  <div class="link">لديك حساب؟ <span onclick="showPage('login')">تسجيل الدخول</span></div>
- </div></div>
+
+ <div class="authWrap">
+
+  <div class="card auth">
+
+   <div class="authIcon">
+    👨‍🎓
+   </div>
+
+   <h1>
+    تسجيل طالب جديد
+   </h1>
+
+   <p class="sub">
+    التسجيل بسيط ومناسب للطلاب من 10 إلى 15 سنة.
+   </p>
+
+
+   <form id="registerForm">
+
+    <label>
+     👤 اسم الطالب
+    </label>
+
+    <input
+     id="regName"
+     maxlength="80"
+     placeholder="مثال: أحمد محمد"
+     required
+    >
+
+
+    <label>
+     🔢 كود الطالب
+    </label>
+
+    <input
+     id="regCode"
+     maxlength="30"
+     placeholder="اكتب الكود الذي أعطاه لك الأستاذ"
+     required
+    >
+
+
+    <label>
+     🎒 الصف الدراسي
+    </label>
+
+    <select id="regGrade" required>
+
+     <option value="">
+      اختر الصف الدراسي
+     </option>
+
+     <option>
+      الرابع الابتدائي
+     </option>
+
+     <option>
+      الخامس الابتدائي
+     </option>
+
+     <option>
+      السادس الابتدائي
+     </option>
+
+     <option>
+      الأول الإعدادي
+     </option>
+
+     <option>
+      الثاني الإعدادي
+     </option>
+
+     <option>
+      الثالث الإعدادي
+     </option>
+
+    </select>
+
+
+    <label>
+     🔐 كلمة المرور
+    </label>
+
+    <input
+     id="regPass"
+     type="password"
+     minlength="6"
+     placeholder="6 أحرف أو أرقام على الأقل"
+     required
+    >
+
+
+    <button
+     class="btn primary full"
+     type="submit">
+     🚀 إنشاء الحساب
+    </button>
+
+   </form>
+
+
+   <div id="regMsg" class="msg"></div>
+
+
+   <div class="link">
+    لديك حساب؟
+    <span onclick="showPage('login')">
+     تسجيل الدخول
+    </span>
+   </div>
+
+  </div>
+
+ </div>
+
 </section>
+
+
+<!-- ==================== EXAM BUILDER ==================== -->
+<section id="examBuilder" class="page">
+ <div class="dashboard examBuilder">
+  <div class="panel">
+   <div class="builderHead">
+    <div>
+     <h1 style="margin:0;">📝 إعداد الامتحان</h1>
+     <p class="muted" id="builderSubtitle">أضف الأسئلة والإجابات الصحيحة من هنا.</p>
+    </div>
+    <button class="smallBtn" type="button" onclick="backToAdmin()">↩️ رجوع للإدارة</button>
+   </div>
+   <div class="builderMeta" style="margin-top:14px;">
+    <div class="metaPill" id="builderTitle">—</div>
+    <div class="metaPill" id="builderGrade">—</div>
+    <div class="metaPill" id="builderDuration">—</div>
+   </div>
+  </div>
+
+  <div class="panel questionEditor">
+   <h2>➕ إضافة سؤال جديد</h2>
+   <p class="muted">اكتب السؤال ثم أدخل 4 إجابات، وحدد الإجابة الصحيحة.</p>
+
+   <label>❓ السؤال</label>
+   <textarea id="newQuestionText" rows="3" placeholder="اكتب نص السؤال هنا..."></textarea>
+
+   <div class="answerGrid" style="margin-top:12px;">
+    <div>
+     <label>🔹 الإجابة الأولى</label>
+     <input id="newAnswer0" placeholder="الإجابة الأولى">
+    </div>
+    <div>
+     <label>🔹 الإجابة الثانية</label>
+     <input id="newAnswer1" placeholder="الإجابة الثانية">
+    </div>
+    <div>
+     <label>🔹 الإجابة الثالثة</label>
+     <input id="newAnswer2" placeholder="الإجابة الثالثة">
+    </div>
+    <div>
+     <label>🔹 الإجابة الرابعة</label>
+     <input id="newAnswer3" placeholder="الإجابة الرابعة">
+    </div>
+   </div>
+
+   <div class="correctRow">
+    <label style="margin:0;">✅ الإجابة الصحيحة</label>
+    <select id="newCorrectIndex" style="max-width:240px;">
+     <option value="0">الإجابة الأولى</option>
+     <option value="1">الإجابة الثانية</option>
+     <option value="2">الإجابة الثالثة</option>
+     <option value="3">الإجابة الرابعة</option>
+    </select>
+    <button class="btn primary" type="button" onclick="addQuestionToExam()">➕ إضافة السؤال</button>
+   </div>
+
+   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+    <button class="btn primary" type="button" onclick="saveAndPublishExam()">🚀 حفظ ونشر الامتحان</button>
+    <button class="smallBtn" type="button" onclick="clearQuestionForm()">🧹 مسح الخانات</button>
+   </div>
+
+   <div id="questionMsg" class="msg"></div>
+  </div>
+
+  <div class="panel questionListCard">
+   <div class="builderHead">
+    <div>
+     <h2 style="margin:0;">📚 أسئلة الامتحان</h2>
+     <p class="muted">يمكنك مراجعة الأسئلة وحذف أي سؤال قبل أن يبدأ الطلاب.</p>
+    </div>
+    <div class="metaPill" id="builderQuestionCount">0 سؤال</div>
+   </div>
+   <div id="builderQuestionList" style="margin-top:10px;"></div>
+  </div>
+ </div>
+</section>
+
 
 <!-- ==================== LOGIN ==================== -->
+
 <section id="login" class="page">
- <div class="authWrap"><div class="card auth">
-  <div class="authIcon">🔐</div><h1>دخول الطالب</h1><p class="sub">لن تستطيع الدخول إلا إذا كان الحساب مسجلًا بالفعل.</p>
-  <form id="loginForm">
-   <label>🔢 كود الطالب</label><input id="loginCode" placeholder="اكتب كود الطالب" required>
-   <label>🔐 كلمة المرور</label><input id="loginPass" type="password" placeholder="اكتب كلمة المرور" required>
-   <button class="btn primary full" type="submit">🚀 دخول</button>
-  </form><div id="loginMsg" class="msg"></div>
-  <div class="link">ليس لديك حساب؟ <span onclick="showPage('register')">سجل الآن</span></div>
- </div></div>
+
+ <div class="authWrap">
+
+  <div class="card auth">
+
+   <div class="authIcon">
+    🔐
+   </div>
+
+   <h1>
+    دخول الطالب
+   </h1>
+
+   <p class="sub">
+    لن تستطيع الدخول إلا إذا كان الحساب مسجلًا بالفعل.
+   </p>
+
+
+   <form id="loginForm">
+
+    <label>
+     🔢 كود الطالب
+    </label>
+
+    <input
+     id="loginCode"
+     placeholder="اكتب كود الطالب"
+     required
+    >
+
+
+    <label>
+     🔐 كلمة المرور
+    </label>
+
+    <input
+     id="loginPass"
+     type="password"
+     placeholder="اكتب كلمة المرور"
+     required
+    >
+
+
+    <button
+     class="btn primary full"
+     type="submit">
+     🚀 دخول
+    </button>
+
+   </form>
+
+
+   <div id="loginMsg" class="msg"></div>
+
+
+   <div class="link">
+    ليس لديك حساب؟
+    <span onclick="showPage('register')">
+     سجل الآن
+    </span>
+   </div>
+
+  </div>
+
+ </div>
+
 </section>
+
 
 <!-- ==================== STUDENT DASHBOARD ==================== -->
+
 <section id="student" class="page">
+
  <div class="dashboard">
-  <div class="welcome"><div><small>أهلًا بك 👋</small><h1 id="studentName">...</h1><p id="studentInfo"></p></div><div class="avatar">👨‍🎓</div></div>
-  <div class="stats">
-   <div class="stat"><div class="statIcon">📝</div><h2 id="examCount">0</h2><p>امتحانات متاحة</p></div>
-   <div class="stat"><div class="statIcon">🏆</div><h2 id="resultCount">0</h2><p>امتحانات تم حلها</p></div>
-   <div class="stat"><div class="statIcon">📊</div><h2 id="avgScore">0%</h2><p>متوسط النتائج</p></div>
+
+  <div class="welcome">
+
+   <div>
+
+    <small>
+     أهلًا بك 👋
+    </small>
+
+    <h1 id="studentName">
+     ...
+    </h1>
+
+    <p id="studentInfo"></p>
+
+   </div>
+
+   <div class="avatar">
+    👨‍🎓
+   </div>
+
   </div>
-  <div class="panel"><h2>📚 الامتحانات</h2><p class="muted">اختار امتحانًا وابدأ الحل.</p><button class="btn primary" onclick="loadExams()">عرض الامتحانات 🚀</button></div>
-  <div class="panel"><h2>🏆 آخر النتائج</h2><div class="tableWrap"><table><thead><tr><th>الامتحان</th><th>الدرجة</th><th>النسبة</th><th>التاريخ</th></tr></thead><tbody id="myResults"></tbody></table></div></div>
-  <button class="btn danger" onclick="logout()">تسجيل الخروج</button>
+
+
+  <div class="stats">
+
+   <div class="stat">
+
+    <div class="statIcon">
+     📝
+    </div>
+
+    <h2 id="examCount">
+     0
+    </h2>
+
+    <p>
+     امتحانات متاحة
+    </p>
+
+   </div>
+
+
+   <div class="stat">
+
+    <div class="statIcon">
+     🏆
+    </div>
+
+    <h2 id="resultCount">
+     0
+    </h2>
+
+    <p>
+     امتحانات تم حلها
+    </p>
+
+   </div>
+
+
+   <div class="stat">
+
+    <div class="statIcon">
+     📊
+    </div>
+
+    <h2 id="avgScore">
+     0%
+    </h2>
+
+    <p>
+     متوسط النتائج
+    </p>
+
+   </div>
+
+  </div>
+
+
+  <div class="panel">
+
+   <h2>
+    📚 الامتحانات
+   </h2>
+
+   <p class="muted">
+    اختار امتحانًا وابدأ الحل.
+   </p>
+
+   <button
+    class="btn primary"
+    onclick="loadExams()">
+    عرض الامتحانات 🚀
+   </button>
+
+  </div>
+
+
+  <div class="panel">
+
+   <h2>
+    🏆 آخر النتائج
+   </h2>
+
+   <div class="tableWrap">
+
+    <table>
+
+     <thead>
+
+      <tr>
+       <th>الامتحان</th>
+       <th>الدرجة</th>
+       <th>النسبة</th>
+       <th>التاريخ</th>
+      </tr>
+
+     </thead>
+
+     <tbody id="myResults"></tbody>
+
+    </table>
+
+   </div>
+
+  </div>
+
+
+  <button
+   class="btn danger"
+   onclick="logout()">
+   تسجيل الخروج
+  </button>
+
  </div>
+
 </section>
+
 
 <!-- ==================== EXAMS ==================== -->
+
 <section id="exams" class="page">
- <div class="dashboard"><h1>📚 الامتحانات</h1><p class="muted">اختار الامتحان الذي تريد حله.</p><div id="examList" class="examGrid"></div></div>
+
+ <div class="dashboard">
+
+  <h1>
+   📚 الامتحانات
+  </h1>
+
+  <p class="muted">
+   اختار الامتحان الذي تريد حله.
+  </p>
+
+  <div
+   id="examList"
+   class="examGrid">
+  </div>
+
+ </div>
+
 </section>
+
 
 <!-- ==================== EXAM ==================== -->
+
 <section id="exam" class="page">
- <div class="examTop"><div><h2 id="examTitle">الامتحان</h2><small id="examCountTop"></small></div><div class="timer" id="timer">--:--</div></div>
- <div class="dashboard"><form id="examForm"></form></div>
+
+ <div class="examTop">
+
+  <div>
+
+   <h2 id="examTitle">
+    الامتحان
+   </h2>
+
+   <small id="examCountTop"></small>
+
+  </div>
+
+  <div
+   class="timer"
+   id="timer">
+   --:--
+  </div>
+
+ </div>
+
+
+ <div class="dashboard">
+
+  <form id="examForm"></form>
+
+ </div>
+
 </section>
+
 
 <!-- ==================== RESULT ==================== -->
+
 <section id="result" class="page">
- <div class="authWrap"><div class="card result">
-  <div class="cup">🏆</div><h1>تم تصحيح الامتحان</h1><p id="resultTitle" class="sub"></p>
-  <div class="score"><span id="resultScore">0</span> / <span id="resultTotal">0</span></div>
-  <h2 id="resultPercent">0%</h2><h3 id="resultText" style="margin:12px 0"></h3>
-  <button class="btn primary full" onclick="openStudent()">🏠 لوحة الطالب</button>
- </div></div>
+
+ <div class="authWrap">
+
+  <div class="card result">
+
+   <div class="cup">
+    🏆
+   </div>
+
+   <h1>
+    تم تصحيح الامتحان
+   </h1>
+
+   <p
+    id="resultTitle"
+    class="sub">
+   </p>
+
+
+   <div class="score">
+
+    <span id="resultScore">
+     0
+    </span>
+
+    /
+
+    <span id="resultTotal">
+     0
+    </span>
+
+   </div>
+
+
+   <h2 id="resultPercent">
+    0%
+   </h2>
+
+
+   <h3
+    id="resultText"
+    style="margin:12px 0">
+   </h3>
+
+
+   <button
+    class="btn primary full"
+    onclick="openStudent()">
+    🏠 لوحة الطالب
+   </button>
+
+  </div>
+
+ </div>
+
 </section>
+
 
 <!-- ==================== ADMIN LOGIN ==================== -->
+
 <section id="adminLogin" class="page">
- <div class="authWrap"><div class="card auth">
-  <div class="authIcon">👨‍🏫</div><h1>دخول الأستاذ</h1><p class="sub">هذه الصفحة مخصصة للإدارة فقط.</p>
-  <form id="adminLoginForm">
-   <label>📧 البريد الإلكتروني</label><input id="adminEmail" type="email" placeholder="بريد حساب الإدارة" required>
-   <label>🔐 كلمة المرور</label><input id="adminPass" type="password" required>
-   <button class="btn primary full">🔐 دخول الإدارة</button>
-  </form><div id="adminMsg" class="msg"></div>
- </div></div>
+
+ <div class="authWrap">
+
+  <div class="card auth">
+
+   <div class="authIcon">
+    👨‍🏫
+   </div>
+
+   <h1>
+    دخول الأستاذ
+   </h1>
+
+   <p class="sub">
+    اكتب البريد الإلكتروني الخاص بالأستاذ للدخول إلى لوحة الإدارة.
+   </p>
+
+
+   <form id="adminLoginForm">
+
+    <label>
+     📧 البريد الإلكتروني
+    </label>
+
+    <input
+     id="adminEmail"
+     type="email"
+     placeholder="بريد الأستاذ"
+     autocomplete="email"
+     required
+    >
+
+
+    <button
+     class="btn primary full"
+     type="submit">
+     🔐 دخول الإدارة
+    </button>
+
+   </form>
+
+
+   <div
+    id="adminMsg"
+    class="msg">
+   </div>
+
+  </div>
+
+ </div>
+
 </section>
+
 
 <!-- ==================== ADMIN ==================== -->
+
 <section id="admin" class="page">
+
  <div class="dashboard">
-  <h1>📊  لوحة تحكم الأستاذ احمد السيد</h1><p class="muted">إدارة الطلاب ومشاهدة نتائج الامتحانات.</p>
+
+  <h1>
+   📊 لوحة تحكم الأستاذ احمد السيد
+  </h1>
+
+  <p class="muted">
+   إدارة الطلاب ومشاهدة نتائج الامتحانات.
+  </p>
+
+
+  <div class="adminInfo">
+   👨‍🏫 تم الدخول كأستاذ باستخدام البريد:
+   <b>
+    omarmistafa60@gmail.com
+   </b>
+  </div>
+
+
   <div class="stats">
-   <div class="stat"><div class="statIcon">👨‍🎓</div><h2 id="adminStudents">0</h2><p>الطلاب</p></div>
-   <div class="stat"><div class="statIcon">📝</div><h2 id="adminExams">0</h2><p>الامتحانات</p></div>
-   <div class="stat"><div class="statIcon">🏆</div><h2 id="adminResults">0</h2><p>النتائج</p></div>
+
+   <div class="stat">
+
+    <div class="statIcon">
+     👨‍🎓
+    </div>
+
+    <h2 id="adminStudents">
+     0
+    </h2>
+
+    <p>
+     الطلاب
+    </p>
+
+   </div>
+
+
+   <div class="stat">
+
+    <div class="statIcon">
+     📝
+    </div>
+
+    <h2 id="adminExams">
+     0
+    </h2>
+
+    <p>
+     الامتحانات
+    </p>
+
+   </div>
+
+
+   <div class="stat">
+
+    <div class="statIcon">
+     🏆
+    </div>
+
+    <h2 id="adminResults">
+     0
+    </h2>
+
+    <p>
+     النتائج
+    </p>
+
+   </div>
+
   </div>
 
-  <div class="panel">
-   <h2>👨‍🎓 الطلاب المسجلون</h2>
-   <input id="search" class="search" placeholder="🔎 ابحث باسم الطالب أو الكود">
-   <div class="tableWrap"><table><thead><tr><th>الاسم</th><th>الكود</th><th>الصف</th><th>عدد النتائج</th></tr></thead><tbody id="studentsTable"></tbody></table></div>
-  </div>
+
+  <!-- STUDENTS -->
 
   <div class="panel">
-   <h2>🏆 نتائج الامتحانات</h2>
-   <div class="tableWrap"><table><thead><tr><th>الطالب</th><th>الكود</th><th>الامتحان</th><th>الدرجة</th><th>النسبة</th><th>التاريخ</th></tr></thead><tbody id="resultsTable"></tbody></table></div>
+
+   <h2>
+    👨‍🎓 الطلاب المسجلون
+   </h2>
+
+   <input
+    id="search"
+    class="search"
+    placeholder="🔎 ابحث باسم الطالب أو الكود"
+   >
+
+
+   <div class="tableWrap">
+
+    <table>
+
+     <thead>
+
+      <tr>
+       <th>الاسم</th>
+       <th>الكود</th>
+       <th>الصف</th>
+       <th>عدد النتائج</th>
+       <th>الملف</th>
+      </tr>
+
+     </thead>
+
+     <tbody id="studentsTable"></tbody>
+
+    </table>
+
+   </div>
+
   </div>
 
+
+  <!-- STUDENT DETAILS -->
+
+  <div class="panel" id="studentDetailsPanel" style="display:none;">
+
+   <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+    <h2 style="margin:0;">👤 ملف الطالب</h2>
+    <button class="smallBtn" onclick="closeStudentDetails()">✖ إغلاق</button>
+   </div>
+
+   <div id="studentDetails" style="margin-top:15px;"></div>
+
+  </div>
+
+
+  <!-- RESULTS -->
+
   <div class="panel">
-   <h2>➕ إنشاء امتحان</h2>
-   <p class="muted">في هذه النسخة يتم إنشاء الامتحان من هنا، ثم إضافة الأسئلة له مباشرة من نموذج الأسئلة بالأسفل.</p>
-   <div class="row"><input id="newExamTitle" placeholder="اسم الامتحان"><input id="newExamDuration" type="number" min="1" value="10" placeholder="المدة بالدقائق"><button class="btn primary" onclick="createExam()">إضافة الامتحان</button></div>
+
+   <h2>
+    🏆 نتائج الامتحانات
+   </h2>
+
+   <div class="tableWrap">
+
+    <table>
+
+     <thead>
+
+      <tr>
+       <th>الطالب</th>
+       <th>الكود</th>
+       <th>الامتحان</th>
+       <th>الدرجة</th>
+       <th>النسبة</th>
+       <th>التاريخ</th>
+      </tr>
+
+     </thead>
+
+     <tbody id="resultsTable"></tbody>
+
+    </table>
+
+   </div>
+
+  </div>
+
+
+  <!-- CREATE EXAM -->
+
+  <div class="panel">
+
+   <h2>
+    ➕ إنشاء امتحان
+   </h2>
+
+   <p class="muted">
+    اكتب اسم الامتحان وحدد الصف والمدة، ثم اضغط «إضافة الامتحان» للانتقال مباشرةً إلى صفحة إضافة الأسئلة والإجابات.
+   </p>
+
+
+   <div class="row">
+
+    <input
+     id="newExamTitle"
+     placeholder="اسم الامتحان"
+    >
+
+    <select id="newExamGrade">
+     <option value="">اختر الصف</option>
+     <option>الرابع الابتدائي</option>
+     <option>الخامس الابتدائي</option>
+     <option>السادس الابتدائي</option>
+     <option>الأول الإعدادي</option>
+     <option>الثاني الإعدادي</option>
+     <option>الثالث الإعدادي</option>
+     <option value="all">كل الصفوف</option>
+    </select>
+
+    <input
+     id="newExamDuration"
+     type="number"
+     min="1"
+     value="10"
+     placeholder="المدة بالدقائق"
+    >
+
+    <button
+     class="btn primary"
+     onclick="createExam()">
+     إضافة الامتحان
+    </button>
+
+   </div>
+
+
    <div id="adminExamList"></div>
+
   </div>
-  <button class="btn danger" onclick="logout()">تسجيل الخروج</button>
+
+
+  <button
+   class="btn danger"
+   onclick="logout()">
+   تسجيل الخروج
+  </button>
+
  </div>
+
 </section>
 
+
 <script type="module">
+
+/* =========================================================
+   FIREBASE
+   ========================================================= */
+
+import {
+ initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+ getAuth,
+ createUserWithEmailAndPassword,
+ deleteUser,
+ signInWithEmailAndPassword,
+ signOut,
+ onAuthStateChanged,
+ setPersistence,
+ browserLocalPersistence
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+ getFirestore,
+ doc,
+ setDoc,
+ getDoc,
+ getDocs,
+ addDoc,
+ updateDoc,
+ collection,
+ query,
+ where,
+ orderBy,
+ serverTimestamp,
+ deleteDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
 /* =========================================================
    FIREBASE CONFIG
    ========================================================= */
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,setPersistence,browserLocalPersistence} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import {getFirestore,doc,setDoc,getDoc,getDocs,addDoc,collection,query,where,orderBy,serverTimestamp,deleteDoc} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5jiF4FoG6WulUNbj8Cf2MzH1WQcDc_xk",
-  authDomain: "ahmed-elsayed-191f5.firebaseapp.com",
-  projectId: "ahmed-elsayed-191f5",
-  storageBucket: "ahmed-elsayed-191f5.firebasestorage.app",
-  messagingSenderId: "71848871849",
-  appId: "1:71848871849:web:e862cc007ac408be55a6b8",
-  measurementId: "G-BFWPC51926"
+
+ apiKey:
+ "AIzaSyC5jiF4FoG6WulUNbj98Cf2MzH1WQcDc_xk",
+
+ authDomain:
+ "ahmed-elsayed-191f5.firebaseapp.com",
+
+ projectId:
+ "ahmed-elsayed-191f5",
+
+ storageBucket:
+ "ahmed-elsayed-191f5.firebasestorage.app",
+
+ messagingSenderId:
+ "71848871849",
+
+ appId:
+ "1:71848871849:web:e862cc007ac408be55a6b8",
+
+ measurementId:
+ "G-BFWPC51926"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-await setPersistence(auth,browserLocalPersistence);
 
-let currentUser=null,currentStudent=null,currentExam=null,timer=null,submitted=false;
-let allStudents=[],allResults=[];
+/* =========================================================
+   ADMIN EMAIL
+   ========================================================= */
 
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-const codeEmail=c=>c.trim().toUpperCase().replace(/[^A-Z0-9._-]/g,"_")+"@student.local";
+const ADMIN_EMAIL =
+ "omarmistafa60@gmail.com";
 
-window.showPage=id=>{
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- $(id)?.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+const app =
+ initializeApp(firebaseConfig);
+
+const auth =
+ getAuth(app);
+
+const db =
+ getFirestore(app);
+
+await setPersistence(
+ auth,
+ browserLocalPersistence
+);
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+let currentUser = null;
+
+let currentStudent = null;
+
+let currentExam = null;
+
+let pendingExam = null;
+
+let timer = null;
+
+let submitted = false;
+
+let adminLogged = false;
+
+let allStudents = [];
+
+let allResults = [];
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+const $ =
+ id => document.getElementById(id);
+
+
+const esc =
+ s =>
+ String(s ?? "")
+ .replace(
+  /[&<>"']/g,
+  m =>
+  ({
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[m])
+ );
+
+
+const codeEmail =
+ c =>
+ c
+ .trim()
+ .toUpperCase()
+ .replace(/[^A-Z0-9._-]/g,"_")
+ +
+ "@student.local";
+
+
+/* =========================================================
+   SHOW PAGE
+   ========================================================= */
+
+window.showPage = id => {
+
+ if(id === "register" && currentUser && currentStudent?.role === "student"){
+  loadStudent().then(() => showPage("student"));
+  return;
+ }
+
+ if(id === "admin"){
+
+  if(!adminLogged){
+
+   showPage("adminLogin");
+
+   return;
+  }
+
+ }
+
+ document
+ .querySelectorAll(".page")
+ .forEach(
+  p => p.classList.remove("active")
+ );
+
+ $(id)?.classList.add("active");
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
 };
 
-window.toggleTheme=()=>{
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+window.toggleTheme = () => {
+
  document.body.classList.toggle("dark");
- const dark=document.body.classList.contains("dark");
- localStorage.setItem("teacher_theme",dark?"dark":"light");
- $("themeBtn").textContent=dark?"☀️":"🌙";
+
+ const dark =
+ document.body.classList.contains("dark");
+
+ localStorage.setItem(
+  "teacher_theme",
+  dark ? "dark" : "light"
+ );
+
+ $("themeBtn").textContent =
+ dark ? "☀️" : "🌙";
+
 };
-if(localStorage.getItem("teacher_theme")==="dark"){document.body.classList.add("dark");$("themeBtn").textContent="☀️"}
 
-window.logout=async()=>{await signOut(auth);currentUser=null;currentStudent=null;showPage("home")};
 
-window.openStudent=async()=>{
- if(!currentUser){showPage("login");return}
- await loadStudent();showPage("student");
-};
+if(
+ localStorage.getItem("teacher_theme")
+ ===
+ "dark"
+){
 
-onAuthStateChanged(auth,async user=>{
- currentUser=user;
- if(user){
-  const snap=await getDoc(doc(db,"users",user.uid));
-  if(snap.exists()) currentStudent=snap.data();
- }
-});
+ document.body.classList.add("dark");
 
-/* ==================== REGISTER ==================== */
-$("registerForm").addEventListener("submit",async e=>{
- e.preventDefault();$("regMsg").textContent="⏳ جاري إنشاء الحساب...";
- const name=$("regName").value.trim(),code=$("regCode").value.trim().toUpperCase(),grade=$("regGrade").value;
- const p=$("regPass").value,p2=$("regPass2").value;
- if(p!==p2){$("regMsg").textContent="❌ كلمتا المرور غير متطابقتين";return}
- if(p.length<6){$("regMsg").textContent="❌ كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل";return}
- try{
-  const cred=await createUserWithEmailAndPassword(auth,codeEmail(code),p);
-  await setDoc(doc(db,"users",cred.user.uid),{uid:cred.user.uid,name,code,grade,role:"student",createdAt:serverTimestamp()});
-  currentUser=cred.user;currentStudent={name,code,grade,role:"student"};
-  $("regMsg").textContent="✅ تم التسجيل بنجاح";
-  setTimeout(openStudent,700);
- }catch(err){
-  $("regMsg").textContent=err.code==="auth/email-already-in-use"?"❌ هذا الكود مسجل بالفعل":"❌ حدث خطأ: "+err.message;
- }
-});
+ $("themeBtn").textContent =
+ "☀️";
 
-/* ==================== LOGIN ==================== */
-$("loginForm").addEventListener("submit",async e=>{
- e.preventDefault();$("loginMsg").textContent="⏳ جاري التحقق...";
- try{
-  const cred=await signInWithEmailAndPassword(auth,codeEmail($("loginCode").value),$("loginPass").value);
-  const snap=await getDoc(doc(db,"users",cred.user.uid));
-  if(!snap.exists()||snap.data().role!=="student"){await signOut(auth);$("loginMsg").textContent="❌ الحساب غير صالح";return}
-  currentUser=cred.user;currentStudent=snap.data();await openStudent();
- }catch(err){$("loginMsg").textContent="❌ كود الطالب أو كلمة المرور غير صحيحة"}
-});
-
-/* ==================== STUDENT ==================== */
-async function loadStudent(){
- if(!currentUser)return;
- const snap=await getDoc(doc(db,"users",currentUser.uid));if(!snap.exists())return;
- currentStudent=snap.data();
- $("studentName").textContent=currentStudent.name;
- $("studentInfo").textContent=`🎒 ${currentStudent.grade} • كود: ${currentStudent.code}`;
- const ex=await getDocs(collection(db,"exams"));$("examCount").textContent=ex.size;
- const rs=await getDocs(query(collection(db,"results"),where("uid","==",currentUser.uid)));
- $("resultCount").textContent=rs.size;
- let sum=0,arr=[];rs.forEach(x=>{const r=x.data();sum+=Number(r.percentage||0);arr.push(r)});
- $("avgScore").textContent=rs.size?Math.round(sum/rs.size)+"%":"0%";
- $("myResults").innerHTML=arr.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,10).map(r=>
- `<tr><td>${esc(r.examTitle)}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td><td>${esc(r.dateText||"-")}</td></tr>`).join("")||`<tr><td colspan="4" class="empty">لا توجد نتائج حتى الآن.</td></tr>`;
 }
 
-/* ==================== EXAMS ==================== */
-window.loadExams=async()=>{
- if(!currentUser){showPage("login");return}
- showPage("exams");$("examList").innerHTML='<div class="empty">⏳ جاري التحميل...</div>';
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+window.logout = async () => {
+
+ adminLogged = false;
+
+ localStorage.removeItem(
+  "admin_logged"
+ );
+
  try{
-  const snap=await getDocs(query(collection(db,"exams"),orderBy("createdAt","desc")));
-  if(snap.empty){$("examList").innerHTML='<div class="empty">لا توجد امتحانات متاحة حاليًا.</div>';return}
-  $("examList").innerHTML="";
-  snap.forEach(d=>{
-   const e=d.data();
-   $("examList").innerHTML+=`<div class="exam"><div class="examIcon">📘</div><h2>${esc(e.title)}</h2><p>⏱️ ${e.duration||10} دقيقة</p><p>📝 ${(e.questions||[]).length} أسئلة</p><button class="btn primary" onclick="startExam('${d.id}')">ابدأ الامتحان 🚀</button></div>`;
-  });
- }catch(err){$("examList").innerHTML='<div class="empty">❌ تعذر تحميل الامتحانات. تأكد من إعداد Firestore.</div>'}
+  await signOut(auth);
+ }catch(e){}
+
+ currentUser = null;
+
+ currentStudent = null;
+
+ showPage("home");
+
 };
 
-window.startExam=async id=>{
- if(!currentUser){showPage("login");return}
- const snap=await getDoc(doc(db,"exams",id));if(!snap.exists())return;
- currentExam={id,...snap.data()};submitted=false;
- if(!(currentExam.questions||[]).length){alert("هذا الامتحان لا يحتوي على أسئلة.");return}
- $("examTitle").textContent=currentExam.title;$("examCountTop").textContent=`${currentExam.questions.length} أسئلة`;
- $("examForm").innerHTML=currentExam.questions.map((q,i)=>`
- <div class="question"><h3>${i+1}️⃣ ${esc(q.text)}</h3>
- ${(q.options||[]).map((op,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${esc(op)}</label>`).join("")}</div>`).join("")+
- `<button class="btn primary full" type="submit">✅ تسليم الامتحان</button>`;
- showPage("exam");startTimer(Number(currentExam.duration||10)*60);
- $("examForm").onsubmit=e=>{e.preventDefault();submitExam()};
+
+/* =========================================================
+   OPEN STUDENT
+   ========================================================= */
+
+window.openStudent = async () => {
+
+ if(!currentUser){
+
+  showPage("login");
+
+  return;
+ }
+
+ await loadStudent();
+
+ showPage("student");
+
 };
+
+
+/* =========================================================
+   AUTH STATE
+   ========================================================= */
+
+onAuthStateChanged(
+ auth,
+ async user => {
+
+  currentUser = user;
+
+  if(!user){
+   currentStudent = null;
+   return;
+  }
+
+  try{
+
+   const snap =
+   await getDoc(
+    doc(db,"users",user.uid)
+   );
+
+   if(snap.exists()){
+
+    currentStudent =
+    snap.data();
+
+    // الحساب محفوظ على الجهاز، فلا نطلب التسجيل مرة أخرى.
+    // نفتح لوحة الطالب تلقائيًا بعد إعادة تحميل الموقع.
+    if(currentStudent.role === "student"){
+     await loadStudent();
+     showPage("student");
+    }
+
+   }
+
+  }catch(e){
+
+   console.log(e);
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   REGISTER
+   ========================================================= */
+
+$("registerForm")
+.addEventListener(
+ "submit",
+ async e => {
+
+  e.preventDefault();
+
+  $("regMsg").textContent =
+  "⏳ جاري إنشاء الحساب...";
+
+  const name =
+  $("regName")
+  .value
+  .trim();
+
+  const code =
+  $("regCode")
+  .value
+  .trim()
+  .toUpperCase();
+
+  const grade =
+  $("regGrade")
+  .value;
+
+  const p =
+  $("regPass")
+  .value;
+
+  if(!name || !code || !grade || !p){
+
+   $("regMsg").textContent =
+   "❌ من فضلك أكمل كل البيانات";
+
+   return;
+  }
+
+  if(p.length < 6){
+
+   $("regMsg").textContent =
+   "❌ كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل";
+
+   return;
+  }
+
+  let cred = null;
+
+  try{
+
+   // إنشاء حساب الطالب في Firebase Authentication
+   cred =
+   await createUserWithEmailAndPassword(
+    auth,
+    codeEmail(code),
+    p
+   );
+
+   // حفظ ملف الطالب في Firestore وربطه بنفس UID
+   await setDoc(
+    doc(db,"users",cred.user.uid),
+    {
+     uid:cred.user.uid,
+     name,
+     code,
+     grade,
+     role:"student",
+     createdAt:serverTimestamp()
+    },
+    { merge:true }
+   );
+
+   currentUser = cred.user;
+   currentStudent = {
+    uid:cred.user.uid,
+    name,
+    code,
+    grade,
+    role:"student"
+   };
+
+   // تأكد من بقاء تسجيل الدخول محفوظًا على الجهاز
+   localStorage.setItem("student_uid", cred.user.uid);
+   localStorage.setItem("student_code", code);
+
+   $("regMsg").textContent =
+   "✅ تم إنشاء الحساب وحفظ بيانات الطالب بنجاح";
+
+   setTimeout(() => {
+    openStudent();
+   }, 500);
+
+  }catch(err){
+
+   console.error("REGISTER ERROR:", err);
+
+   let message = "❌ حدث خطأ أثناء إنشاء الحساب";
+
+   if(err.code === "auth/email-already-in-use"){
+    message = "❌ هذا الكود مسجل بالفعل. استخدم كودًا آخر أو ادخل بالحساب القديم.";
+   }else if(err.code === "auth/invalid-email"){
+    message = "❌ كود الطالب غير صالح.";
+   }else if(err.code === "auth/weak-password"){
+    message = "❌ كلمة المرور ضعيفة. استخدم 6 أحرف أو أرقام على الأقل.";
+   }else if(err.code === "auth/network-request-failed"){
+    message = "❌ مشكلة في الإنترنت. تأكد من الاتصال ثم حاول مرة أخرى.";
+   }else if(err.code === "permission-denied" || err.code === "firestore/permission-denied"){
+    message = "❌ تم إنشاء حساب الدخول، لكن Firebase رفض حفظ بيانات الطالب. راجع Firestore Rules.";
+   }else if(err.code){
+    message = `❌ ${err.code}: ${err.message || "حدث خطأ غير معروف"}`;
+   }
+
+   // لو تم إنشاء حساب Auth لكن فشل حفظ بياناته، نحاول حذفه حتى لا يظل الكود محجوزًا.
+   if(cred?.user && (err.code === "permission-denied" || String(err.code || "").includes("firestore"))){
+    try{
+     await deleteUser(cred.user);
+    }catch(cleanErr){
+     console.warn("Could not rollback Auth user:", cleanErr);
+    }
+   }
+
+   $("regMsg").textContent = message;
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   STUDENT LOGIN
+   ========================================================= */
+
+$("loginForm")
+.addEventListener(
+ "submit",
+ async e => {
+
+  e.preventDefault();
+
+  $("loginMsg").textContent =
+  "⏳ جاري التحقق...";
+
+
+  try{
+
+   const cred =
+   await signInWithEmailAndPassword(
+    auth,
+    codeEmail(
+     $("loginCode").value
+    ),
+    $("loginPass").value
+   );
+
+
+   const snap =
+   await getDoc(
+    doc(
+     db,
+     "users",
+     cred.user.uid
+    )
+   );
+
+
+   if(
+    !snap.exists()
+    ||
+    snap.data().role !== "student"
+   ){
+
+    await signOut(auth);
+
+    $("loginMsg").textContent =
+    "❌ الحساب غير صالح";
+
+    return;
+
+   }
+
+
+   currentUser =
+   cred.user;
+
+
+   currentStudent =
+   snap.data();
+
+
+   await openStudent();
+
+
+  }catch(err){
+
+   console.error(err);
+
+   $("loginMsg").textContent =
+   "❌ كود الطالب أو كلمة المرور غير صحيحة";
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   ADMIN LOGIN
+   ========================================================= */
+
+$("adminLoginForm")
+.addEventListener(
+ "submit",
+ async e => {
+
+  e.preventDefault();
+
+  const email =
+  $("adminEmail")
+  .value
+  .trim()
+  .toLowerCase();
+
+  $("adminMsg").textContent =
+  "⏳ جاري التحقق...";
+
+  if(
+   email !==
+   ADMIN_EMAIL.toLowerCase()
+  ){
+
+   $("adminMsg").textContent =
+   "❌ البريد الإلكتروني غير مصرح له بدخول الإدارة";
+
+   return;
+  }
+
+  adminLogged = true;
+
+   localStorage.setItem(
+    "admin_logged",
+    "1"
+   );
+
+   $("adminMsg").textContent =
+   "✅ تم الدخول بنجاح";
+
+   setTimeout(
+    async () => {
+
+     showPage("admin");
+
+     try{
+      await loadAdmin();
+     }catch(err){
+      console.error(err);
+      alert(
+       "تم فتح لوحة الإدارة، لكن تعذر تحميل البيانات من Firestore. تأكد من Firestore Rules."
+      );
+     }
+
+    },
+    300
+   );
+
+ }
+);
+
+
+/* =========================================================
+   ADMIN SESSION
+   ========================================================= */
+
+if(
+ localStorage.getItem("admin_logged")
+ ===
+ "1"
+){
+
+ adminLogged = true;
+
+}
+
+
+/* =========================================================
+   STUDENT DASHBOARD
+   ========================================================= */
+
+async function loadStudent(){
+
+ if(!currentUser)
+ return;
+
+
+ const snap =
+ await getDoc(
+  doc(
+   db,
+   "users",
+   currentUser.uid
+  )
+ );
+
+
+ if(!snap.exists())
+ return;
+
+
+ currentStudent =
+ snap.data();
+
+
+ $("studentName").textContent =
+ currentStudent.name;
+
+
+ $("studentInfo").textContent =
+ `🎒 ${currentStudent.grade} • كود: ${currentStudent.code}`;
+
+
+ const ex =
+ await getDocs(
+  collection(db,"exams")
+ );
+
+ const availableExams =
+ ex.docs.filter(d => {
+  const e = d.data();
+
+  return !e.targetGrade ||
+         e.targetGrade === "all" ||
+         e.targetGrade === currentStudent.grade;
+ });
+
+ $("examCount").textContent =
+ availableExams.length;
+
+
+ const rs =
+ await getDocs(
+  query(
+   collection(db,"results"),
+   where(
+    "uid",
+    "==",
+    currentUser.uid
+   )
+  )
+ );
+
+
+ $("resultCount").textContent =
+ rs.size;
+
+
+ let sum = 0;
+
+ let arr = [];
+
+
+ rs.forEach(
+  x => {
+
+   const r =
+   x.data();
+
+   sum +=
+   Number(
+    r.percentage || 0
+   );
+
+   arr.push(r);
+
+  }
+ );
+
+
+ $("avgScore").textContent =
+ rs.size
+ ?
+ Math.round(
+  sum / rs.size
+ ) + "%"
+ :
+ "0%";
+
+
+ arr.sort(
+  (a,b) =>
+  (b.createdAt?.seconds || 0)
+  -
+  (a.createdAt?.seconds || 0)
+ );
+
+
+ $("myResults").innerHTML =
+ arr
+ .slice(0,10)
+ .map(
+  r =>
+  `
+  <tr>
+   <td>${esc(r.examTitle)}</td>
+   <td>${r.score}/${r.total}</td>
+   <td>${r.percentage}%</td>
+   <td>${esc(r.dateText || "-")}</td>
+  </tr>
+  `
+ )
+ .join("")
+ ||
+ `
+ <tr>
+  <td colspan="4" class="empty">
+   لا توجد نتائج حتى الآن.
+  </td>
+ </tr>
+ `;
+
+}
+
+
+/* =========================================================
+   EXAMS
+   ========================================================= */
+
+window.loadExams =
+ async () => {
+
+  if(!currentUser){
+
+   showPage("login");
+
+   return;
+
+  }
+
+
+  showPage("exams");
+
+
+  $("examList").innerHTML =
+  '<div class="empty">⏳ جاري التحميل...</div>';
+
+
+  try{
+
+   const snap =
+   await getDocs(
+    query(
+     collection(db,"exams"),
+     orderBy(
+      "createdAt",
+      "desc"
+     )
+    )
+   );
+
+
+   const visibleDocs =
+   snap.docs.filter(d => {
+    const e = d.data();
+
+    return !e.targetGrade ||
+           e.targetGrade === "all" ||
+           e.targetGrade === currentStudent.grade;
+   });
+
+   if(!visibleDocs.length){
+
+    $("examList").innerHTML =
+    '<div class="empty">لا توجد امتحانات متاحة لصفك حاليًا.</div>';
+
+    return;
+
+   }
+
+
+   $("examList").innerHTML =
+   "";
+
+
+   visibleDocs.forEach(
+    d => {
+
+     const e =
+     d.data();
+
+
+     $("examList").innerHTML +=
+     `
+     <div class="exam">
+
+      <div class="examIcon">
+       📘
+      </div>
+
+      <h2>
+       ${esc(e.title)}
+      </h2>
+
+      <p>
+       ⏱️ ${e.duration || 10} دقيقة
+      </p>
+
+      <p>
+       📝 ${(e.questions || []).length} أسئلة
+      </p>
+
+      <button
+       class="btn primary"
+       onclick="startExam('${d.id}')">
+       ابدأ الامتحان 🚀
+      </button>
+
+     </div>
+     `;
+
+    }
+   );
+
+
+  }catch(err){
+
+   console.error(err);
+
+   $("examList").innerHTML =
+   `
+   <div class="empty">
+    ❌ تعذر تحميل الامتحانات.
+    تأكد من إعداد Firestore.
+   </div>
+   `;
+
+  }
+
+ };
+
+
+/* =========================================================
+   START EXAM
+   ========================================================= */
+
+window.startExam =
+ async id => {
+
+  if(!currentUser){
+
+   showPage("login");
+
+   return;
+
+  }
+
+
+  const snap =
+  await getDoc(
+   doc(
+    db,
+    "exams",
+    id
+   )
+  );
+
+
+  if(!snap.exists())
+  return;
+
+
+  currentExam =
+  {
+   id,
+   ...snap.data()
+  };
+
+
+  submitted =
+  false;
+
+
+  if(
+   !(currentExam.questions || []).length
+  ){
+
+   alert(
+    "هذا الامتحان لا يحتوي على أسئلة."
+   );
+
+   return;
+
+  }
+
+
+  $("examTitle").textContent =
+  currentExam.title;
+
+
+  $("examCountTop").textContent =
+  `${currentExam.questions.length} أسئلة`;
+
+
+  $("examForm").innerHTML =
+  currentExam.questions
+  .map(
+   (q,i) =>
+
+   `
+   <div class="question">
+
+    <h3>
+     ${i+1}️⃣ ${esc(q.text)}
+    </h3>
+
+    ${
+     (q.options || [])
+     .map(
+      (op,j) =>
+
+      `
+      <label class="option">
+
+       <input
+        type="radio"
+        name="q${i}"
+        value="${j}"
+       >
+
+       ${esc(op)}
+
+      </label>
+      `
+     )
+     .join("")
+    }
+
+   </div>
+   `
+  )
+  .join("")
+  +
+
+  `
+  <button
+   class="btn primary full"
+   type="submit">
+   ✅ تسليم الامتحان
+  </button>
+  `;
+
+
+  showPage("exam");
+
+
+  startTimer(
+   Number(
+    currentExam.duration || 10
+   ) * 60
+  );
+
+
+  $("examForm").onsubmit =
+  e => {
+
+   e.preventDefault();
+
+   submitExam();
+
+  };
+
+ };
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
 
 function startTimer(seconds){
- clearInterval(timer);let left=seconds;
- timer=setInterval(()=>{let m=Math.floor(left/60),s=left%60;$("timer").textContent=`⏱️ ${m}:${String(s).padStart(2,"0")}`;left--;if(left<0)submitExam()},1000);
+
+ clearInterval(timer);
+
+ let left =
+ seconds;
+
+
+ timer =
+ setInterval(
+  () => {
+
+   let m =
+   Math.floor(
+    left / 60
+   );
+
+
+   let s =
+   left % 60;
+
+
+   $("timer").textContent =
+   `⏱️ ${m}:${String(s).padStart(2,"0")}`;
+
+
+   left--;
+
+
+   if(left < 0){
+
+    clearInterval(timer);
+
+    submitExam();
+
+   }
+
+  },
+  1000
+ );
+
 }
+
+
+/* =========================================================
+   SUBMIT EXAM
+   ========================================================= */
+
 async function submitExam(){
- if(submitted)return;submitted=true;clearInterval(timer);
- let score=0;
- currentExam.questions.forEach((q,i)=>{const x=document.querySelector(`input[name="q${i}"]:checked`);if(x&&Number(x.value)===Number(q.correctIndex))score++});
- const total=currentExam.questions.length,percentage=Math.round(score/total*100);
- await addDoc(collection(db,"results"),{uid:currentUser.uid,name:currentStudent.name,code:currentStudent.code,examId:currentExam.id,examTitle:currentExam.title,score,total,percentage,dateText:new Date().toLocaleString("ar-EG"),createdAt:serverTimestamp()});
- $("resultTitle").textContent=currentExam.title;$("resultScore").textContent=score;$("resultTotal").textContent=total;$("resultPercent").textContent=percentage+"%";
- $("resultText").textContent=percentage>=85?"🌟 ممتاز جدًا!":percentage>=50?"👏 نتيجة جيدة، استمر!":"💪 راجع دروسك وحاول مرة أخرى.";
- showPage("result");
-}
 
-/* ==================== ADMIN LOGIN ==================== */
-$("adminLoginForm").addEventListener("submit",async e=>{
- e.preventDefault();$("adminMsg").textContent="⏳ جاري التحقق...";
+ if(submitted)
+ return;
+
+
+ submitted =
+ true;
+
+
+ clearInterval(timer);
+
+
+ let score =
+ 0;
+
+
+ currentExam.questions
+ .forEach(
+  (q,i) => {
+
+   const x =
+   document.querySelector(
+    `input[name="q${i}"]:checked`
+   );
+
+
+   if(
+    x &&
+    Number(x.value) ===
+    Number(q.correctIndex)
+   ){
+
+    score++;
+
+   }
+
+  }
+ );
+
+
+ const total =
+ currentExam.questions.length;
+
+
+ const percentage =
+ Math.round(
+  score / total * 100
+ );
+
+
  try{
-  const cred=await signInWithEmailAndPassword(auth,$("adminEmail").value.trim(),$("adminPass").value);
-  const snap=await getDoc(doc(db,"users",cred.user.uid));
-  if(!snap.exists()||snap.data().role!=="admin"){await signOut(auth);$("adminMsg").textContent="❌ الحساب ليس حساب إدارة";return}
-  currentUser=cred.user;showPage("admin");loadAdmin();
- }catch(err){$("adminMsg").textContent="❌ بيانات الإدارة غير صحيحة"}
-});
 
-/* ==================== ADMIN ==================== */
+  await addDoc(
+   collection(
+    db,
+    "results"
+   ),
+   {
+
+    uid:
+    currentUser.uid,
+
+    name:
+    currentStudent.name,
+
+    code:
+    currentStudent.code,
+
+    examId:
+    currentExam.id,
+
+    examTitle:
+    currentExam.title,
+
+    score,
+
+    total,
+
+    percentage,
+
+    dateText:
+    new Date()
+    .toLocaleString("ar-EG"),
+
+    createdAt:
+    serverTimestamp()
+
+   }
+  );
+
+
+ }catch(err){
+
+  console.error(err);
+
+  alert(
+   "تم حساب النتيجة، لكن حدثت مشكلة أثناء حفظها."
+  );
+
+ }
+
+
+ $("resultTitle").textContent =
+ currentExam.title;
+
+
+ $("resultScore").textContent =
+ score;
+
+
+ $("resultTotal").textContent =
+ total;
+
+
+ $("resultPercent").textContent =
+ percentage + "%";
+
+
+ $("resultText").textContent =
+
+ percentage >= 85
+ ?
+ "🌟 ممتاز جدًا!"
+
+ :
+ percentage >= 50
+ ?
+ "👏 نتيجة جيدة، استمر!"
+
+ :
+ "💪 راجع دروسك وحاول مرة أخرى.";
+
+
+ showPage("result");
+
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
 async function loadAdmin(){
- const [ss,rs,es]=await Promise.all([
-  getDocs(query(collection(db,"users"),where("role","==","student"))),
-  getDocs(collection(db,"results")),getDocs(collection(db,"exams"))
+
+ if(!adminLogged){
+
+  showPage("adminLogin");
+
+  return;
+
+ }
+
+
+ const [
+  ss,
+  rs,
+  es
+ ] =
+ await Promise.all([
+
+  getDocs(
+   query(
+    collection(db,"users"),
+    where(
+     "role",
+     "==",
+     "student"
+    )
+   )
+  ),
+
+  getDocs(
+   collection(db,"results")
+  ),
+
+  getDocs(
+   collection(db,"exams")
+  )
+
  ]);
- allStudents=ss.docs.map(d=>d.data());allResults=rs.docs.map(d=>d.data());
- $("adminStudents").textContent=allStudents.length;$("adminResults").textContent=allResults.length;$("adminExams").textContent=es.size;
- renderStudents(allStudents);renderResults();renderAdminExams(es);
+
+
+ allStudents =
+ ss.docs.map(
+  d => d.data()
+ );
+
+
+ allResults =
+ rs.docs.map(
+  d => d.data()
+ );
+
+
+ $("adminStudents").textContent =
+ allStudents.length;
+
+
+ $("adminResults").textContent =
+ allResults.length;
+
+
+ $("adminExams").textContent =
+ es.size;
+
+
+ renderStudents(
+  allStudents
+ );
+
+
+ renderResults();
+
+
+ renderAdminExams(
+  es
+ );
+
 }
+
+
+/* =========================================================
+   STUDENTS TABLE
+   ========================================================= */
+
 function renderStudents(list){
- $("studentsTable").innerHTML=list.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.code)}</td><td>${esc(s.grade)}</td><td>${allResults.filter(r=>r.code===s.code).length}</td></tr>`).join("")||`<tr><td colspan="4" class="empty">لا يوجد طلاب.</td></tr>`;
+
+ $("studentsTable").innerHTML =
+
+ list
+ .map(
+  s =>
+
+  `
+  <tr>
+
+   <td>
+    ${esc(s.name)}
+   </td>
+
+   <td>
+    ${esc(s.code)}
+   </td>
+
+   <td>
+    ${esc(s.grade)}
+   </td>
+
+   <td>
+    ${
+     allResults.filter(
+      r =>
+      (r.uid && r.uid === s.uid) || r.code === s.code
+     ).length
+    }
+   </td>
+
+   <td>
+    <button class="smallBtn" onclick="viewStudent('${esc(s.uid || '')}')">
+     👁️ عرض الملف
+    </button>
+   </td>
+
+  </tr>
+  `
+ )
+ .join("")
+
+ ||
+
+ `
+ <tr>
+  <td colspan="5" class="empty">
+   لا يوجد طلاب.
+  </td>
+ </tr>
+ `;
+
 }
-function renderResults(){
- $("resultsTable").innerHTML=allResults.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.code)}</td><td>${esc(r.examTitle)}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td><td>${esc(r.dateText||"-")}</td></tr>`).join("")||`<tr><td colspan="6" class="empty">لا توجد نتائج.</td></tr>`;
-}
-$("search").addEventListener("input",e=>{
- const q=e.target.value.trim().toLowerCase();
- renderStudents(allStudents.filter(s=>s.name.toLowerCase().includes(q)||s.code.toLowerCase().includes(q)));
-});
-window.createExam=async()=>{
- const title=$("newExamTitle").value.trim(),duration=Number($("newExamDuration").value);
- if(!title){alert("اكتب اسم الامتحان");return}
- await addDoc(collection(db,"exams"),{title,duration,questions:[],createdAt:serverTimestamp()});
- $("newExamTitle").value="";alert("✅ تم إنشاء الامتحان");loadAdmin();
+
+
+window.viewStudent = uid => {
+
+ const student = allStudents.find(s => s.uid === uid);
+
+ if(!student){
+  alert("الطالب غير موجود");
+  return;
+ }
+
+ const results = allResults.filter(
+  r => (r.uid && r.uid === student.uid) || r.code === student.code
+ );
+
+ const avg = results.length
+  ? Math.round(results.reduce((sum,r) => sum + Number(r.percentage || 0),0) / results.length)
+  : 0;
+
+ const best = results.length
+  ? Math.max(...results.map(r => Number(r.percentage || 0)))
+  : 0;
+
+ const resultRows = results.map(r => `
+  <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+   <b>${esc(r.examTitle || "امتحان")}</b>
+   <div class="muted" style="margin-top:5px;">الدرجة: ${r.score ?? 0}/${r.total ?? 0} • النسبة: ${r.percentage ?? 0}% • ${esc(r.dateText || "-")}</div>
+  </div>
+ `).join("") || '<div class="empty">لم يؤدِّ الطالب أي امتحان حتى الآن.</div>';
+
+ $("studentDetails").innerHTML = `
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+   <div class="stat"><h3>👤 الاسم</h3><b>${esc(student.name)}</b></div>
+   <div class="stat"><h3>🔢 الكود</h3><b>${esc(student.code)}</b></div>
+   <div class="stat"><h3>🎒 الصف</h3><b>${esc(student.grade)}</b></div>
+   <div class="stat"><h3>📝 عدد الامتحانات</h3><b>${results.length}</b></div>
+   <div class="stat"><h3>📈 المتوسط</h3><b>${avg}%</b></div>
+   <div class="stat"><h3>🏆 أعلى نتيجة</h3><b>${best}%</b></div>
+  </div>
+
+  <div class="panel" style="margin-top:15px;">
+   <h3>🏆 نتائج الطالب</h3>
+   ${resultRows}
+  </div>
+ `;
+
+ $("studentDetailsPanel").style.display = "block";
+ $("studentDetailsPanel").scrollIntoView({behavior:"smooth",block:"start"});
 };
-function renderAdminExams(snap){
- $("adminExamList").innerHTML=snap.docs.map(d=>{const e=d.data();return `<div style="padding:15px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center"><div><b>${esc(e.title)}</b><br><span class="muted">${(e.questions||[]).length} أسئلة • ${e.duration} دقائق</span></div><button class="smallBtn danger" onclick="deleteExam('${d.id}')">حذف</button></div>`}).join("")||'<div class="empty">لا توجد امتحانات.</div>';
+
+window.closeStudentDetails = () => {
+ $("studentDetailsPanel").style.display = "none";
+};
+
+
+
+/* =========================================================
+   RESULTS TABLE
+   ========================================================= */
+
+function renderResults(){
+
+ $("resultsTable").innerHTML =
+
+ allResults
+ .map(
+  r =>
+
+  `
+  <tr>
+
+   <td>
+    ${esc(r.name)}
+   </td>
+
+   <td>
+    ${esc(r.code)}
+   </td>
+
+   <td>
+    ${esc(r.examTitle)}
+   </td>
+
+   <td>
+    ${r.score}/${r.total}
+   </td>
+
+   <td>
+    ${r.percentage}%
+   </td>
+
+   <td>
+    ${esc(r.dateText || "-")}
+   </td>
+
+  </tr>
+  `
+ )
+ .join("")
+
+ ||
+
+ `
+ <tr>
+  <td colspan="6" class="empty">
+   لا توجد نتائج.
+  </td>
+ </tr>
+ `;
+
 }
-window.deleteExam=async id=>{if(confirm("هل تريد حذف الامتحان؟")){await deleteDoc(doc(db,"exams",id));loadAdmin()}};
+
+
+/* =========================================================
+   SEARCH STUDENTS
+   ========================================================= */
+
+$("search")
+.addEventListener(
+ "input",
+ e => {
+
+  const q =
+  e.target.value
+  .trim()
+  .toLowerCase();
+
+
+  renderStudents(
+
+   allStudents.filter(
+    s =>
+
+    String(s.name || "")
+    .toLowerCase()
+    .includes(q)
+
+    ||
+
+    String(s.code || "")
+    .toLowerCase()
+    .includes(q)
+
+    ||
+
+    String(s.grade || "")
+    .toLowerCase()
+    .includes(q)
+   )
+
+  );
+
+ }
+);
+
+
+/* =========================================================
+   EXAM BUILDER
+   ========================================================= */
+
+function clearQuestionForm(){
+ $("newQuestionText").value = "";
+ $("newAnswer0").value = "";
+ $("newAnswer1").value = "";
+ $("newAnswer2").value = "";
+ $("newAnswer3").value = "";
+ $("newCorrectIndex").value = "0";
+}
+
+function renderExamBuilder(){
+ if(!currentExam){
+  showPage("admin");
+  return;
+ }
+
+ const questions = currentExam.questions || [];
+
+ $("builderTitle").textContent = currentExam.title || "امتحان";
+ $("builderGrade").textContent = "🎒 " + (
+  currentExam.targetGrade === "all" ? "كل الصفوف" : (currentExam.targetGrade || "كل الصفوف")
+ );
+ $("builderDuration").textContent = "⏱️ " + (currentExam.duration || 10) + " دقيقة";
+ $("builderQuestionCount").textContent = questions.length + " سؤال" + (questions.length === 1 ? "" : "ات");
+
+ $("builderQuestionList").innerHTML = questions.map((q,i) => {
+  const answers = q.options || [];
+  return `
+   <div class="questionItem">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+     <div style="flex:1;">
+      <b>${i+1}️⃣ ${esc(q.text || "سؤال بدون نص")}</b>
+      <div class="answers">
+       ${answers.map((a,j) => `
+        <div class="answerOption ${Number(q.correctIndex) === j ? "correct" : ""}">
+         ${j+1}) ${esc(a)} ${Number(q.correctIndex) === j ? "✅" : ""}
+        </div>
+       `).join("")}
+      </div>
+     </div>
+     <button class="smallBtn danger" type="button" onclick="deleteExamQuestion(${i})">🗑️ حذف</button>
+    </div>
+   </div>
+  `;
+ }).join("") || '<div class="empty">لم تتم إضافة أسئلة بعد.</div>';
+}
+
+window.openExamBuilder = async id => {
+ if(!adminLogged){
+  showPage("adminLogin");
+  return;
+ }
+
+ try{
+  const snap = await getDoc(doc(db,"exams",id));
+  if(!snap.exists()){
+   alert("❌ الامتحان غير موجود");
+   return;
+  }
+
+  currentExam = {id,...snap.data(),unsaved:false};
+  pendingExam = null;
+  clearQuestionForm();
+  $("questionMsg").textContent = "";
+  renderExamBuilder();
+  showPage("examBuilder");
+ }catch(err){
+  console.error(err);
+  alert("❌ تعذر فتح صفحة الامتحان. تأكد من Firestore Rules.");
+ }
+};
+
+window.addQuestionToExam = async () => {
+ if(!adminLogged || !currentExam){
+  showPage("adminLogin");
+  return;
+ }
+
+ const text = $("newQuestionText").value.trim();
+ const options = [0,1,2,3].map(i => $("newAnswer"+i).value.trim());
+ const correctIndex = Number($("newCorrectIndex").value);
+
+ if(!text){
+  $("questionMsg").textContent = "❌ اكتب نص السؤال أولًا";
+  return;
+ }
+
+ if(options.some(x => !x)){
+  $("questionMsg").textContent = "❌ اكتب الإجابات الأربع كلها";
+  return;
+ }
+
+ const question = {text,options,correctIndex};
+ const questions = [...(currentExam.questions || []),question];
+
+ try{
+  if(currentExam.unsaved){
+   currentExam.questions = questions;
+   clearQuestionForm();
+   $("questionMsg").textContent = "✅ تمت إضافة السؤال. يمكنك إضافة سؤال آخر.";
+   renderExamBuilder();
+   return;
+  }
+
+  $("questionMsg").textContent = "⏳ جاري حفظ السؤال...";
+
+  await updateDoc(
+   doc(db,"exams",currentExam.id),
+   {questions}
+  );
+
+  currentExam.questions = questions;
+  clearQuestionForm();
+  $("questionMsg").textContent = "✅ تمت إضافة السؤال وحفظه";
+  renderExamBuilder();
+ }catch(err){
+  console.error(err);
+  $("questionMsg").textContent = "❌ تعذر حفظ السؤال. تأكد من Firestore Rules.";
+ }
+};
+
+window.deleteExamQuestion = async index => {
+ if(!adminLogged || !currentExam) return;
+ if(!confirm("هل تريد حذف هذا السؤال؟")) return;
+
+ try{
+  const questions = [...(currentExam.questions || [])];
+  questions.splice(index,1);
+
+  if(currentExam.unsaved){
+   currentExam.questions = questions;
+   renderExamBuilder();
+   $("questionMsg").textContent = "✅ تم حذف السؤال.";
+   return;
+  }
+
+  await updateDoc(
+   doc(db,"exams",currentExam.id),
+   {questions}
+  );
+
+  currentExam.questions = questions;
+  renderExamBuilder();
+ }catch(err){
+  console.error(err);
+  alert("❌ تعذر حذف السؤال.");
+ }
+};
+
+window.backToAdmin = async () => {
+ if(currentExam?.unsaved && (currentExam.questions || []).length){
+  const ok = confirm("الامتحان لم يتم نشره بعد. هل تريد الرجوع وفقدان الأسئلة الحالية؟");
+  if(!ok) return;
+ }
+ currentExam = null;
+ pendingExam = null;
+ await loadAdmin();
+ showPage("admin");
+};
+
+
+/* =========================================================
+   CREATE EXAM
+   ========================================================= */
+
+window.createExam =
+ async () => {
+
+  if(!adminLogged){
+   alert("يجب تسجيل دخول الإدارة أولًا.");
+   showPage("adminLogin");
+   return;
+  }
+
+  const title = $("newExamTitle").value.trim();
+  const targetGrade = $("newExamGrade").value;
+  const duration = Number($("newExamDuration").value);
+
+  if(!title){
+   alert("اكتب اسم الامتحان");
+   $("newExamTitle").focus();
+   return;
+  }
+
+  if(!targetGrade){
+   alert("اختر الصف الذي سيظهر له الامتحان");
+   $("newExamGrade").focus();
+   return;
+  }
+
+  if(!duration || duration < 1){
+   alert("اكتب مدة صحيحة للامتحان");
+   $("newExamDuration").focus();
+   return;
+  }
+
+  // لا نرسل إلى Firebase هنا؛ نفتـح صفحة إعداد الامتحان فورًا.
+  // بعد إضافة الأسئلة يضغط الأدمن "حفظ ونشر الامتحان".
+  currentExam = {
+   id:null,
+   title,
+   targetGrade,
+   duration,
+   questions:[],
+   unsaved:true
+  };
+  pendingExam = currentExam;
+
+  $("newExamTitle").value = "";
+  $("newExamGrade").value = "";
+  $("newExamDuration").value = "10";
+
+  clearQuestionForm();
+  $("questionMsg").textContent = "ℹ️ الامتحان جاهز. أضف الأسئلة والإجابات ثم اضغط «حفظ ونشر الامتحان».";
+  renderExamBuilder();
+  showPage("examBuilder");
+};
+
+window.saveAndPublishExam = async () => {
+ if(!adminLogged || !currentExam){
+  showPage("adminLogin");
+  return;
+ }
+
+ const questions = currentExam.questions || [];
+
+ if(!questions.length){
+  $("questionMsg").textContent = "❌ أضف سؤالًا واحدًا على الأقل قبل حفظ الامتحان.";
+  return;
+ }
+
+ const saveBtn = document.querySelector('[onclick="saveAndPublishExam()"]');
+ if(saveBtn){ saveBtn.disabled = true; saveBtn.textContent = "⏳ جاري الحفظ..."; }
+ $("questionMsg").textContent = "⏳ جاري حفظ ونشر الامتحان...";
+
+ const withTimeout = (promise, ms=12000) => Promise.race([
+  promise,
+  new Promise((_, reject) => setTimeout(() => reject(new Error("TIMEOUT")), ms))
+ ]);
+
+ try{
+  if(currentExam.unsaved){
+   const ref = await withTimeout(addDoc(
+    collection(db,"exams"),
+    {
+     title:currentExam.title,
+     targetGrade:currentExam.targetGrade,
+     duration:Number(currentExam.duration),
+     questions,
+     createdAt:serverTimestamp()
+    }
+   ));
+
+   currentExam.id = ref.id;
+   currentExam.unsaved = false;
+   pendingExam = null;
+  }else{
+   await withTimeout(updateDoc(
+    doc(db,"exams",currentExam.id),
+    {
+     title:currentExam.title,
+     targetGrade:currentExam.targetGrade || "all",
+     duration:Number(currentExam.duration) || 10,
+     questions
+    }
+   ));
+  }
+
+  $("questionMsg").textContent = "✅ تم حفظ ونشر الامتحان بنجاح.";
+  currentExam = null;
+
+  // افتح لوحة الإدارة فورًا، ولا تنتظر تحميل كل البيانات حتى لا تبقى الصفحة معلّقة.
+  showPage("admin");
+  try{
+   await withTimeout(loadAdmin(), 8000);
+  }catch(refreshErr){
+   console.warn("تم الحفظ لكن تعذر تحديث لوحة الإدارة الآن:", refreshErr);
+  }
+
+ }catch(err){
+  console.error(err);
+  const msg = err?.message === "TIMEOUT"
+   ? "❌ الحفظ استغرق وقتًا طويلًا. تأكد من الإنترنت وFirestore Rules ثم حاول مرة أخرى."
+   : (err?.code === "permission-denied"
+      ? "❌ ليس لديك صلاحية الكتابة في Firestore. راجع Firestore Rules."
+      : "❌ تعذر حفظ الامتحان. تأكد من الإنترنت وFirestore Rules.");
+  $("questionMsg").textContent = msg;
+  if(saveBtn){ saveBtn.disabled = false; saveBtn.textContent = "🚀 حفظ ونشر الامتحان"; }
+ }
+};
+
+/* =========================================================
+   ADMIN EXAMS
+   ========================================================= */
+
+function renderAdminExams(snap){
+
+ $("adminExamList").innerHTML =
+
+ snap.docs
+ .map(
+  d => {
+
+   const e =
+   d.data();
+
+
+   return `
+
+   <div
+    style="
+     padding:15px 0;
+     border-bottom:1px solid var(--border);
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap:10px;
+    "
+   >
+
+    <div>
+
+     <b>
+      ${esc(e.title)}
+     </b>
+
+     <br>
+
+     <span class="muted">
+      ${(e.questions || []).length}
+      أسئلة •
+      ${e.duration || 10}
+      دقائق •
+      الصف: ${esc(e.targetGrade === "all" ? "كل الصفوف" : (e.targetGrade || "كل الصفوف"))}
+     </span>
+
+    </div>
+
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+     <button
+      class="smallBtn"
+      type="button"
+      onclick="openExamBuilder('${d.id}')">
+      ✏️ إدارة الأسئلة
+     </button>
+
+     <button
+      class="smallBtn danger"
+      type="button"
+      onclick="deleteExam('${d.id}')">
+      حذف
+     </button>
+    </div>
+
+   </div>
+
+   `;
+
+  }
+ )
+ .join("")
+
+ ||
+
+ `
+ <div class="empty">
+  لا توجد امتحانات.
+ </div>
+ `;
+
+}
+
+
+/* =========================================================
+   DELETE EXAM
+   ========================================================= */
+
+window.deleteExam =
+ async id => {
+
+  if(!adminLogged){
+
+   alert(
+    "يجب تسجيل دخول الأستاذ أولًا."
+   );
+
+   return;
+
+  }
+
+
+  if(
+   !confirm(
+    "هل تريد حذف الامتحان؟"
+   )
+  )
+  return;
+
+
+  try{
+
+   await deleteDoc(
+    doc(
+     db,
+     "exams",
+     id
+    )
+   );
+
+
+   await loadAdmin();
+
+
+  }catch(err){
+
+   console.error(err);
+
+   alert(
+    "❌ تعذر حذف الامتحان. تأكد من Firestore Rules."
+   );
+
+  }
+
+ };
+
+
 </script>
+
 </body>
 </html>
